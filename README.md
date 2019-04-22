@@ -3,5 +3,5 @@
 
 Thing that are done:
 
-Player Movement(need to fix infinite jump)
+Player Movement(need to fix infinite jump),
 Enemy Movement AI
