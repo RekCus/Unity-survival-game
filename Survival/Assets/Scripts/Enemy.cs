@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     int MoveSpeed = 8;
     int MaxDist = 10;
     int MinDist = 1;
+    public bool powerUp;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,18 @@ public class Enemy : MonoBehaviour
     {
         transform.LookAt(Player);
 
-        if (Vector3.Distance(transform.position, Player.position) >= MinDist)
+
+        if (powerUp && Vector3.Distance(transform.position, Player.position) >= MinDist)
+        {
+            transform.position -= transform.forward * MoveSpeed * Time.deltaTime;
+        }
+
+        else if (!powerUp && Vector3.Distance(transform.position, Player.position) >= MinDist)
         {
 
             transform.position += transform.forward * MoveSpeed * Time.deltaTime;
         }
+
+       
     }
 }

@@ -9,36 +9,39 @@ public class Timer : MonoBehaviour
     Text counterText;
 
     public float seconds, minutes;
-
+    float startTime;
+    float elapsedTime;
+    public GameObject winText, gameOverButton, timer, player;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        startTime = Time.time;
         counterText = GetComponent<Text>() as Text;
+        winText.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        minutes = (int)(Time.time / 60f);
-        seconds = (int)(Time.time % 60f);
+
+
+        elapsedTime = Time.time - startTime;
+        minutes = (int)(elapsedTime / 60f);
+        seconds = (int)(elapsedTime % 60f);
         counterText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
+        
+        if(minutes == 1)
+        {
+            Debug.Log("YOU WIN!!!");
+
+            winText.SetActive(true);
+            gameOverButton.SetActive(true);
+            timer.SetActive(false);
+            player.SetActive(false);
 
 
-       // if(minutes >= 1)
-      //  {
-      //      counterText.text = "YOU WIN!!!!" + "\n"+ "Press 'space' to restart" ;
-
-       //     if (Input.GetKey(KeyCode.Space))
-      //      {
-
-      //          Application.LoadLevel(Application.loadedLevel);
-
-
-       //     }
-      //  }
-
+        }
 
 
     }
