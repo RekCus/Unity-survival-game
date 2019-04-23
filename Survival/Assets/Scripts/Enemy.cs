@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour
 {
 
     public Transform Player;
-    int MoveSpeed = 4;
+    int MoveSpeed = 8;
     int MaxDist = 10;
     int MinDist = 1;
 

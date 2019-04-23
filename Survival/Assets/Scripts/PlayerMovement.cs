@@ -8,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float sensitivity;
     public float jumpForce = 5;
+    float sprintspeed;
     bool jump = false;
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            transform.position += transform.forward * speed * Time.deltaTime;
+            transform.position += transform.forward * (speed+sprintspeed) * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -38,6 +39,14 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = true;
             GetComponent<Rigidbody>().velocity = Vector3.up * jumpForce;
+        }
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            sprintspeed = speed;
+        }
+        else if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            sprintspeed = 0;
         }
     }
 
